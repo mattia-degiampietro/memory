@@ -1,58 +1,58 @@
 export let flags = {
     argentina: {
         src: "./flags/argentina.png",
-        name: "",
+        name: "Argentina",
     },
     belgium: {
         src: "./flags/belgium.png",
-        name: "",
+        name: "Belgio",
     },
     brazil: {
         src: "./flags/brazil.png",
-        name: "",
+        name: "Brasile",
     },
     canada: {
         src: "./flags/canada.png",
-        name: "",
+        name: "Canada",
     },
     france: {
         src: "./flags/france.png",
-        name: "",
+        name: "Francia",
     },
     greece: {
         src: "./flags/greece.png",
-        name: "",
+        name: "Grecia",
     },
     italy: {
         src: "./flags/italy.png",
-        name: "",
+        name: "Italia",
     },
     jamaica: {
         src: "./flags/jamaica.png",
-        name: "",
+        name: "Giamaica",
     },
     spain: {
         src: "./flags/spain.png",
-        name: "",
+        name: "Spagna",
     },
     sweden: {
         src: "./flags/sweden.png",
-        name: "",
+        name: "Svezia",
     },
     swiss: {
         src: "./flags/swiss.png",
-        name: "",
+        name: "Svizzera",
     },
     uk: {
         src: "./flags/uk.png",
-        name: "",
+        name: "Regno Unito",
     },
     ukraine: {
         src: "./flags/ukraine.png",
-        name: "",
+        name: "Ucraina",
     },
     usa: {
         src: "./flags/usa.png",
-        name: "",
+        name: "Stati uniti",
     },
 }

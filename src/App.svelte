@@ -1,11 +1,12 @@
 <script>
-    import { animals } from "./resources/animals";
-    import { flags } from "./resources/flags";
+    import CreateCards from "./componets/CreateCards.svelte";
+    import Memory from "./pages/Memory.svelte";
+
+
 </script>
 
 <main>
-    <img src="{animals.dog.src}" alt="">
-    <img src="{flags.usa.src}" alt="">
+    <Memory />
 </main>
 
 <style>
