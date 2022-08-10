@@ -1,5 +1,5 @@
 <script>
-    import { pointsToWin_, nCards_, nPlayers_, timePlayer_, argument_, roundsArray_ } from "../store";
+    import { pointsToWin_, nCards_, nPlayers_, timePlayer_, argument_, roundArray_ } from "../store";
     import { onMount } from "svelte";
 
     import { animals } from "../resources/animals";
@@ -8,7 +8,8 @@
 
 
     onMount(() => {
-        createRoundArray()
+        createRound();
+        createRoundArray();
     });
 
     let nPlayers = $nPlayers_;
@@ -21,7 +22,11 @@
 
     let nRounds = Math.ceil($pointsToWin_*$nPlayers_/($nCards_/2));
 
-    let roundsArray;
+    let roundArray = [[]];
+
+    let rows = 0;
+
+    let cols = 0;
 
     let round = [{src: '', name: ''}];
 
@@ -94,16 +99,51 @@
 
         return round;
     }
+    
 
     function createRoundArray(){
-        roundsArray = [];
 
-        for(let i = 0; i < nRounds; i++){
-            roundsArray.push(createRound());
+        let tempRound = createRound();
+
+        roundArray = [[], []];
+
+        switch(nCards){
+            case(12):
+                rows = 3;
+                cols = 4;
+            break;
+
+            case(16):
+                rows = 4;
+                cols = 4;
+            break;
+            
+            case(20):
+                rows = 4;
+                cols = 5;
+            break;
+            
+            case(24):
+                rows = 4;
+                cols = 6;
+            break;
+            
+            case(28):
+                rows = 4;
+                cols = 7;
+            break;
+            
+        }
+
+        for(let i = 0, j = 0; i < rows; i++){
+            roundArray.push([])
+            for(let k = 0; k < cols; k++, j++){
+                roundArray[i].push(round[j]);
+            }
         }
         
-        $roundsArray_ = roundsArray
-        console.log($roundsArray_);
+        $roundArray_ = roundArray;
+        console.log($roundArray_);
     }
     
 </script>
