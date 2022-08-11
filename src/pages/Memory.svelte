@@ -1,10 +1,19 @@
 <script>
-import CreateCards from "../componets/CreateCards.svelte";
-import Table from "../componets/Table.svelte";
+    import Players from "../componets/Players.svelte";
+    import CreateCards from "../componets/CreateCards.svelte";
+    import Table from "../componets/Table.svelte";
 
-function func(event){
-    alert(event.detail.result)
-}
+    let move;
+
+    let count = 0;
+
+    let func = (event) => {
+        move = event.detail.result;
+        console.log(move);
+        count++;
+    }
+
+    
 
 </script>
 
@@ -12,6 +21,8 @@ function func(event){
     <CreateCards />
 
     <Table on:status={func} />
+
+    <Players bind:move bind:count />
 
 </main>
 
