@@ -1,26 +1,99 @@
 <script>
-    import { pointsToWin_, nCards_, nPlayers_, timePlayer_, argument_, roundArray_ } from "../store";
+    import { nCards_, nPlayers_, timePlayer_, argument_, roundArray_ } from "../store";
+
+    import { createEventDispatcher } from 'svelte';
+
+    const dispatch = createEventDispatcher();
 
     let j = 0;
+
+    let clickCounter = 0;
+
+    let root;
+
+    let tempElement;
+
+    let cardd;
+
+    let correctCounter = 0;
+
+    function sendStatus(bool = false){
+        dispatch('status', {
+            result: bool
+        });
+    }
+
+    function onclick(){
+        if(this.dataset.actived === 'true' && clickCounter < 2){
+            setTimeout(() => {
+                console.log("click");
+                this.classList.remove('no-background');
+                this.children[0].classList.remove('hide');
+
+                if(clickCounter === 0){
+                    tempElement = this;
+                    clickCounter = 1;
+                }else if(clickCounter === 1){
+                    clickCounter = 2;
+                    if(tempElement.dataset.name === this.dataset.name){
+                        console.log("esatto");
+                        
+                        setTimeout(() => {
+                            sendStatus(true);
+                            this.classList.add('hide');
+                            tempElement.classList.add('hide');
+                            clickCounter = 0;
+                        }, 1500);
+                        
+                    }else{
+                        console.log("sbagliato");
+                        setTimeout(() => {
+                            sendStatus(false);
+                            this.classList.add('no-background');
+                            this.children[0].classList.add('hide');
+                            tempElement.classList.add('no-background');
+                            tempElement.children[0].classList.add('hide');
+                            tempElement.dataset.actived = 'true';
+                            this.dataset.actived = 'true';
+                            clickCounter  = 0;
+                        }, 1000);
+                        
+                    }
+                }
+                this.dataset.actived = false;
+
+
+            }, 50);
+            
+            
+            }
+        
+    }
+
+    setTimeout(() => {
+      cardd = root.querySelectorAll('.cardd');
+    }, 1000);
+   
 
 </script>
 
 <main>
-    <div class="container">
-        {#each $roundArray_ as row}
+    <div class="container w-md-50 cont d-flex flex-column justify-content-between" bind:this="{root}">
+        {#each $roundArray_ as row, y}
             <div class="row">
                 {#each row as card}
-                    <div class="col card-container m-2 p-0">
-                        <div class="ccard w-100 h-100">
-                            <div class="card-front d-flex flex-column justify-content-between align-items-center w-100 h-100 mb-0 p-3">
-                                <div></div>   
-                                <img src="{card.src}" alt="">
-                                <p>{card.name}</p>
-                            </div>
-                            <div class="card-back w-100 h-100">
-
+                    <div 
+                    class="col border border-secondary m-2 rounded d-flex justify-content-center align-items-center cardd no-background" 
+                    style="background-color: #{card.background};"
+                    data-name={card.name}
+                    data-actived='true'
+                    on:click={onclick}>
+                        <div class="row hide">
+                            <div class="col col-12 text-center">
+                                <img src="{card.src}" alt="" class="">
                             </div>
                         </div>
+                        
                     </div>
                 {/each}
             </div>
@@ -29,40 +102,24 @@
 </main>
 
 <style>
-    .bordi{
-        border: 1px solid gray;
-    }
-    
-    .card-container p{
-        font-size: 3.2vw;
-        margin-bottom: 0px;
-        font-weight: 500;
-        
+    .cont{
+        height: 100vh;
     }
 
-    .card-container{
-        border: 1px solid black;
-        border-radius: 10px;
-        max-height: 28vh;
-        height: 30vw;
-        width: 10vh;
-        
+    img{
+        width: 100%;
     }
 
-    .card-front img{
-
-        max-width: 80%;
-        max-height: 80%;
+    .cardd{
+        padding: 1vw 2vw;
+        height: 22vh;
     }
 
-    .ccard{
-        position: relative;
+    .hide{
+        visibility: hidden;
     }
 
-    .card-front, .card-back{
-        position: absolute;
-    }
-    .card-front{
-        z-index: 1;
+    .no-background{
+        background-color: white !important;
     }
 </style>

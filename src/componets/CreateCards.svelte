@@ -1,5 +1,5 @@
 <script>
-    import { pointsToWin_, nCards_, nPlayers_, timePlayer_, argument_, roundArray_ } from "../store";
+    import { nCards_, nPlayers_, timePlayer_, argument_, roundArray_ } from "../store";
     import { onMount } from "svelte";
 
     import { animals } from "../resources/animals";
@@ -16,11 +16,7 @@
 
     let nCards = $nCards_;
 
-    let pointsToWin = $pointsToWin_;
-
     let argument = $argument_;
-
-    let nRounds = Math.ceil($pointsToWin_*$nPlayers_/($nCards_/2));
 
     let roundArray = [[]];
 
@@ -85,16 +81,11 @@
         }
 
         round = [...round, ...round];
-        shuffle(round);
-        shuffle(round);
-        shuffle(round);
-        shuffle(round);
-        shuffle(round);
-        shuffle(round);
-        shuffle(round);
-        shuffle(round);
-        shuffle(round);
-        shuffle(round);
+
+        for(let i = 0; i < 15; i++){
+            shuffle(round);
+        }
+        
         console.log(round);
 
         return round;
