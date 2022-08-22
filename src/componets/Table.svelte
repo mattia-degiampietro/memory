@@ -13,6 +13,7 @@
 
     let tempElement;
 
+
     let cardd;
 
     let correctCounter = 0;
@@ -38,6 +39,18 @@
                     if(tempElement.dataset.name === this.dataset.name){
                         console.log("esatto");
                         
+                        setTimeout(() => {           
+                            this.classList.remove('border');
+                            this.classList.remove('border-secondary');
+
+                            tempElement.classList.remove('border');
+                            tempElement.classList.remove('border-secondary');
+
+                            tempElement.style.border = '2px solid green';
+                            this.style.border = '2px solid green';
+                        }, 100);
+
+
                         setTimeout(() => {
                             sendStatus(true);
                             this.classList.add('hide');
@@ -47,8 +60,26 @@
                         
                     }else{
                         console.log("sbagliato");
+
+                        setTimeout(() => {           
+                            this.classList.remove('border');
+                            this.classList.remove('border-secondary');
+
+                            tempElement.classList.remove('border');
+                            tempElement.classList.remove('border-secondary');
+
+                            tempElement.style.border = '2px solid red';
+                            this.style.border = '2px solid red';
+                        }, 100);
+
                         setTimeout(() => {
                             sendStatus(false);
+                            this.classList.add('border');
+                            this.classList.add('border-secondary');
+
+                            tempElement.classList.add('border');
+                            tempElement.classList.add('border-secondary');
+
                             this.classList.add('no-background');
                             this.children[0].classList.add('hide');
                             tempElement.classList.add('no-background');
@@ -122,4 +153,5 @@
     .no-background{
         background-color: white !important;
     }
+
 </style>

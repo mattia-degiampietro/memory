@@ -2,6 +2,8 @@
     import Players from "../componets/Players.svelte";
     import CreateCards from "../componets/CreateCards.svelte";
     import Table from "../componets/Table.svelte";
+    import Message from "../componets/Message.svelte";
+    import Timebar from "../componets/Timebar.svelte";
 
     let move;
 
@@ -23,6 +25,10 @@
     <Table on:status={func} />
 
     <Players bind:move bind:count />
+
+    <Message />
+
+    <Timebar />
 
 </main>
 

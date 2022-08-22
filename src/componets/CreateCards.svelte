@@ -126,6 +126,8 @@
             
         }
 
+        console.log(typeof nCards);
+
         for(let i = 0, j = 0; i < rows; i++){
             roundArray.push([])
             for(let k = 0; k < cols; k++, j++){
