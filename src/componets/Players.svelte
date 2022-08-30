@@ -39,7 +39,9 @@
     }
 
     setTimeout(() => {
-        startTime();
+        if($players_.length > 1){
+            startTime();
+        }
     }, $timeMessage_);
 
     $: if(time >= $timePlayer_*1000){
@@ -57,7 +59,10 @@
             //codice da eseguire ad ogni mossa
             console.log($players_);
             
-            stopTime();
+            
+            if($players_.length > 1){
+                stopTime();
+            }
 
             if(mo){
                 $players_[activePlayer].points++;
@@ -66,7 +71,9 @@
 
                 pointsCounter++;
 
-                startTime();
+                if($players_.length > 1){
+                    startTime();
+                }
 
                 if(pointsCounter >= totalPoints){
                     $activePage_ = 'result';
@@ -74,9 +81,11 @@
 
             }else if(!mo){
 
-               changePlayer();
-               setTimeout(() => {
-                    startTime();
+                changePlayer();
+                setTimeout(() => {
+                    if($players_.length > 1){
+                        startTime();
+                    }
                 }, $timeMessage_);
 
             }
@@ -105,9 +114,9 @@
 <main class="position-fixed top-0 start-0 w-100 ply">
     <div class="d-flex flex-row w-100 justify-content-evenly">
         {#each $players_ as player, y}
-             <div class="p-1 rounded-bottom border bg-primary" class:bg-secondary={(activePlayer === y) && true || false}>
+            <div class="p-1 rounded-bottom border bg-primary" class:bg-secondary={(activePlayer === y) && true || false}>
                 {player.name}: {player.points}
-             </div>
+            </div>
         {/each}
     </div>
 </main>

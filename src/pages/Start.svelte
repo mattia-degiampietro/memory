@@ -32,9 +32,9 @@
 
 <div class="row my-2 mx-2 border border-success rounded-4 justify-content-center align-items-center">
     {#each $players_ as player, y}
-         <div class="col-auto bg-success text-light m-2 p-2 rounded-3">
+        <div class="col-auto bg-success text-light m-2 p-2 rounded-3">
             {player.name}
-         </div>
+        </div>
     {/each}
 </div>
 

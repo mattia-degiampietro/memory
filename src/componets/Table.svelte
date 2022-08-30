@@ -50,7 +50,6 @@
                             this.style.border = '2px solid green';
                         }, 100);
 
-
                         setTimeout(() => {
                             sendStatus(true);
                             this.classList.add('hide');
